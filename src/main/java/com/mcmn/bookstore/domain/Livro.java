@@ -26,7 +26,7 @@ public class Livro implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne 
-	@JoinColumn(name = "categoriaId") //alterando apenas para salvar no git
+	@JoinColumn(name = "categoriaId")
 	private Categoria categoria;
 
 	public Livro() {
