@@ -50,12 +50,8 @@ public class LivroService {
 	}
 
 	public void delete(Integer id) {
-		findById(id);
-//		try {
-			repository.deleteById(id);
-//		} catch (DataIntegrityViolationException e) {
-//			throw new com.mcmn.bookstore.services.exceptions.DataIntegrityViolationException("Livro não pode ser deletado! Possui categorias associadas!");
-//		}
+		Livro obj = findById(id);
+		repository.delete(obj);
 	}
 
 	
