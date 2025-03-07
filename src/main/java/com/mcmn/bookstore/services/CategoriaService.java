@@ -34,10 +34,10 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Integer id, CategoriaDTO objDto) {
-		Categoria obj = findById(id);
-		obj.setNome(objDto.getNome());
-		obj.setDescricao(objDto.getDescricao());
-		return repository.save(obj);
+		Categoria newObj = findById(id);
+		newObj.setNome(objDto.getNome());
+		newObj.setDescricao(objDto.getDescricao());
+		return repository.save(newObj);
 	}
 
 	public void delete(Integer id) {

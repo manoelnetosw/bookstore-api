@@ -2,7 +2,6 @@ package com.mcmn.bookstore.dtos;
 
 import java.io.Serializable;
 
-import com.mcmn.bookstore.domain.Categoria;
 import com.mcmn.bookstore.domain.Livro;
 
 public class LivroDTO implements Serializable {
@@ -11,9 +10,6 @@ public class LivroDTO implements Serializable {
 
 	private Integer id;
 	private String titulo;
-	private String nomeAutor;
-	private String texto;
-	private Categoria categoria;
 
 	public LivroDTO() {
 		super();
@@ -24,9 +20,6 @@ public class LivroDTO implements Serializable {
 		super();
 		this.id = obj.getId();
 		this.titulo = obj.getTitulo();
-		this.nomeAutor = obj.getNomeAutor();
-		this.texto = obj.getTexto();
-		this.categoria = obj.getCategoria();
 	}
 
 	public Integer getId() {
@@ -45,30 +38,4 @@ public class LivroDTO implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public String getNomeAutor() {
-		return nomeAutor;
-	}
-
-	public void setNomeAutor(String nomeAutor) {
-		this.nomeAutor = nomeAutor;
-	}
-
-	public String getTexto() {
-		return texto;
-	}
-
-	public void setTexto(String texto) {
-		this.texto = texto;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	
 }
-	

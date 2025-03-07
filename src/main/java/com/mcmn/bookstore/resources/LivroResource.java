@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -34,8 +36,9 @@ public class LivroResource {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<LivroDTO>> findAll() {
-		List<Livro> list = service.findAll();
+	public ResponseEntity<List<LivroDTO>> findAll(
+			@RequestParam(value = "categoria", defaultValue = "0") Integer id_cat) {
+		List<Livro> list = service.findAll(id_cat);
 		List<LivroDTO> listDTO = list.stream().map(obj -> new LivroDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
@@ -49,9 +52,15 @@ public class LivroResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<LivroDTO> update(@PathVariable Integer id, @RequestBody LivroDTO objDto) {
-		Livro newObj = service.update(id, objDto);
-		return ResponseEntity.ok(new LivroDTO(newObj));
+	public ResponseEntity<Livro> update(@PathVariable Integer id, @RequestBody Livro obj) {
+		Livro newObj = service.update(id, obj);
+		return ResponseEntity.ok().body(newObj);
+	}
+
+	@PatchMapping(value = "/{id}")
+	public ResponseEntity<Livro> updatePatch(@PathVariable Integer id, @RequestBody Livro obj) {
+		Livro newObj = service.update(id, obj);
+		return ResponseEntity.ok().body(newObj);
 	}
 
 	@DeleteMapping(value = "/{id}")
